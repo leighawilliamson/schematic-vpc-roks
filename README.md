@@ -117,7 +117,7 @@ Outbound  | Allow load balancer and ingress app incoming traffic          | Allo
 
 ### Dynamic ACL Rules
 
-This module dynamically creates a rule to allow inbound traffic from and allow inbound traffic to each subnet created by the `subnets` variable. This is an example of the rules created from the default value:
+This module dynamically creates a rule to allow outbound traffic from and allow inbound traffic to each subnet created by the `subnets` variable. This is an example of the rules created from the default value:
 
 
 Direction | Allow / Deny | Protocol | Source         | Source Port   | Destination    | Desination Port
