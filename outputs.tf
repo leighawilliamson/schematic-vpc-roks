@@ -51,3 +51,29 @@ output subnet_zone_list {
 }
 
 ##############################################################################
+
+##############################################################################
+# Cluster Outputs
+##############################################################################
+
+output cluster_id {
+  description = "ID of cluster created"
+  value       = module.roks_cluster.id
+}
+
+output cluster_name {
+  description = "Name of cluster created"
+  value       = module.roks_cluster.name
+}
+
+output cluster_private_service_endpoint_url {
+    description = "URL For Cluster Private Service Endpoint"
+    value       = module.roks_cluster.private_service_endpoint_url
+}
+
+output cluster_private_service_endpoint_port {
+    description = "Port for Cluster private service endpoint"
+    value       = module.roks_cluster.private_service_endpoint_port
+}
+
+##############################################################################
