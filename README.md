@@ -1,4 +1,4 @@
-# GCAT Landing Zone
+# Red Hat OpenShift cluster on VPC infrastructure
 
 This module creates a resource group, a VPC in that resource group, IAM Access Groups, and invites users to those Access Groups. It then creates a Red Hat OpenShift Cluster on that VPC
 
