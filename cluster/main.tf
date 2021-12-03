@@ -43,7 +43,7 @@ resource ibm_container_vpc_cluster cluster {
 module worker_pools {
   source            = "./worker_pools"
   region            = var.region
-  pool_list         = var.worker_pools
+  worker_pools      = var.worker_pools
   entitlement       = var.entitlement
   vpc_id            = var.vpc_id
   resource_group_id = var.resource_group_id
