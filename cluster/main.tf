@@ -25,12 +25,6 @@ resource ibm_container_vpc_cluster cluster {
 
   disable_public_service_endpoint = true
 
-  kms_config {
-    instance_id      = var.key_id
-    crk_id           = var.ibm_managed_key_id
-    private_endpoint = true
-  }
-
 }
 
 ##############################################################################
