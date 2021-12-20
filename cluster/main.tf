@@ -25,7 +25,6 @@ resource ibm_container_vpc_cluster cluster {
 
   disable_public_service_endpoint = true
 
-<<<<<<< HEAD
   # kms_config {
   #   instance_id      = var.key_id
   #   crk_id           = var.ibm_managed_key_id
@@ -38,8 +37,6 @@ resource ibm_container_vpc_cluster cluster {
     delete = "30m"
   }
 
-=======
->>>>>>> 667d4c3a22dc42ce1941f013cf0cbcde9fafa110
 }
 
 ##############################################################################
