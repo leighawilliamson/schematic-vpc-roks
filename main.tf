@@ -85,6 +85,18 @@ resource ibm_resource_instance cos {
 # Create ROKS Cluster
 ##############################################################################
 
+data external default_openshift_version {
+  count   = var.kube_version == "default" ? 1 : 0
+  program = [
+    "bash",
+    "${path.module}/default_kube_version.sh"
+  ]
+
+  query = {
+    API_KEY   = var.ibmcloud_api_key
+  }
+}
+
 module roks_cluster {
   source            = "./cluster"
   # Account Variables
@@ -98,7 +110,8 @@ module roks_cluster {
   machine_type      = var.machine_type
   workers_per_zone  = var.workers_per_zone
   entitlement       = var.entitlement
-  kube_version      = var.kube_version
+  # If default, use bash to recieve latest version via API.
+  kube_version      = var.kube_version == "default" ? data.external.default_openshift_version[0].result.default_version : var.kube_version
   tags              = var.tags
   worker_pools      = var.worker_pools
   cos_id            = ibm_resource_instance.cos.id

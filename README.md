@@ -97,7 +97,7 @@ This module allows a user to optionally create public gateways in the VPC in eac
 
 ## Network ACL
 
-This module creates a network ACL with any number of rules. *(Note: by default, VPC Network ACLs have a maximum of 25 rules.)*
+This module creates a network ACL with any number of rules. *(Note: by default, VPC Network ACLs have a maximum of 50 rules.)*
 Any subnets created by this module will be connected to this ACL. The following rules are automatically created in [dynamic_acl_rules.tf](./dynamic_acl_rules.tf).
 
 ### Cluster ACL Rules
@@ -108,17 +108,16 @@ Direction | Rule                                                          | Allo
 ----------|---------------------------------------------------------------|--------------|----------|----------------|---------------|---------------|-----------------
 Inbound   | Allow Worker Nodes to be Created                              | Allow        | All      | 161.26.0.0/16  | -             | 0.0.0.0/0     | -
 Inbound   | Allow communication to Services over Private Service Endpoint | Allow        | All      | 166.8.0.0/14   | -             | 0.0.0.0/0     | -
-Inbound   | Allow incoming traffic requests to apps on worker nodes       | Allow        | TCP      | 0.0.0.0/0      | 30000 - 32767 | 0.0.0.0/0     | -
-Inbound   | Allow load balancer and ingress app incoming traffic          | Allow        | TCP      | 0.0.0.0/0      | Any           | 0.0.0.0/0     | 443
 Outbound  | Allow Worker Nodes to be Created                              | Allow        | All      | 0.0.0.0/0      | -             | 161.26.0.0/16 | -
 Outbound  | Allow communication to Services over Private Service Endpoint | Allow        | All      | 0.0.0.0/0      | -             | 166.8.0.0/14  | -
-Outbound  | Allow incoming traffic requests to apps on worker nodes       | Allow        | TCP      | 0.0.0.0/0      | 30000 - 32767 | 0.0.0.0/0     | -
-Outbound  | Allow load balancer and ingress app incoming traffic          | Allow        | TCP      | 0.0.0.0/0      | Any           | 0.0.0.0/0     | 443
+
+### Control Pane IP ACL Rules
+
+The [control pane ip module](./control_pane_ips) dynamicly creates ACL allow rules for the OpenShift Control Pane based on the region provided. Due to the maximum of 50 ACL rules, only inbound traffic allow rules are created. For this architecture, use a rule to allow all outbound traffic.
 
 ### Dynamic ACL Rules
 
 This module dynamically creates a rule to allow outbound traffic from and allow inbound traffic to each subnet created by the `subnets` variable. This is an example of the rules created from the default value:
-
 
 Direction | Allow / Deny | Protocol | Source         | Source Port   | Destination    | Desination Port
 ----------|--------------|----------|----------------|---------------|----------------|-----------------

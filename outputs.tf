@@ -2,10 +2,10 @@
 # Access Groups
 ##############################################################################
 
-# output access_groups {
-#     description = "Access group information"
-#     value       = module.access_groups.access_groups
-# }
+output access_groups {
+    description = "Access group information"
+    value       = module.access_groups.access_groups
+}
 
 ##############################################################################
 

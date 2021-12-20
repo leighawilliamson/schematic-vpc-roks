@@ -16,6 +16,7 @@ locals {
                 udp         = null
                 icmp        = null
             },
+            # ACLs by default have 50 max rules, outbound rules are commented out
             # {
             #     name        = "allow-outbound-control-pane-${index(local.control_plane_ips[var.region], cidr) + 1}"
             #     action      = "allow"

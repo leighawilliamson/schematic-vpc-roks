@@ -419,13 +419,13 @@ variable entitlement {
 }
 
 variable kube_version {
-    description = "Specify the Kubernetes version, including the major.minor version. To see available versions, run `ibmcloud ks versions`."
+    description = "Specify the Kubernetes version, including the major.minor version. To see available versions, run `ibmcloud ks versions`. To get the default version, leave as `default`."
     type        = string
-    default     = "4.8.21_openshift"
+    default     = "default"
 
     validation {
         error_message = "To create a ROKS cluster, the kube version must include `openshift`."
-        condition     = can(regex(".*openshift", var.kube_version))
+        condition     = can(regex(".*openshift", var.kube_version)) || var.kube_version == "default"
     }
 }
 
