@@ -4,7 +4,7 @@
 
 locals {
     work_pool_map = {
-        for pool in worker_pools:
+        for pool in var.worker_pools:
         pool.name => pool
     }
 }

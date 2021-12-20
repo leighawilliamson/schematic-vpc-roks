@@ -25,10 +25,16 @@ resource ibm_container_vpc_cluster cluster {
 
   disable_public_service_endpoint = true
 
-  kms_config {
-    instance_id      = var.key_id
-    crk_id           = var.ibm_managed_key_id
-    private_endpoint = true
+  # kms_config {
+  #   instance_id      = var.key_id
+  #   crk_id           = var.ibm_managed_key_id
+  #   private_endpoint = true
+  # }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
   }
 
 }
@@ -43,7 +49,7 @@ resource ibm_container_vpc_cluster cluster {
 module worker_pools {
   source            = "./worker_pools"
   region            = var.region
-  pool_list         = var.worker_pools
+  worker_pools      = var.worker_pools
   entitlement       = var.entitlement
   vpc_id            = var.vpc_id
   resource_group_id = var.resource_group_id

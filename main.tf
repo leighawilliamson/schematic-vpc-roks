@@ -15,8 +15,8 @@ provider ibm {
 # Resource Group where VPC Resources Will Be Created
 ##############################################################################
 
-resource ibm_resource_group resource_group {
-  name = var.resource_group
+data ibm_resource_group resource_group {
+  name = "asset-development"
 }
 
 ##############################################################################
@@ -30,7 +30,7 @@ module multizone_vpc {
   source               = "./multizone-vpc"
   prefix               = var.prefix
   region               = var.region
-  resource_group_id    = ibm_resource_group.resource_group.id
+  resource_group_id    = data.ibm_resource_group.resource_group.id
   classic_access       = var.classic_access
   subnets              = var.subnets
   use_public_gateways  = var.use_public_gateways
@@ -45,12 +45,12 @@ module multizone_vpc {
 # Access Groups
 ##############################################################################
 
-module access_groups {
-  source        = "./iam"
-  access_groups = var.access_groups
-
-  depends_on = [ ibm_resource_group.resource_group ]
-}
+# module access_groups {
+#   source        = "./iam"
+#   access_groups = var.access_groups
+# 
+#   depends_on = [ data.ibm_resource_group.resource_group ]
+# }
 
 ##############################################################################
 
@@ -64,7 +64,7 @@ resource ibm_resource_instance cos {
   service           = "cloud-object-storage"
   plan              = "standard"
   location          = "global"
-  resource_group_id = ibm_resource_group.resource_group.id
+  resource_group_id = data.ibm_resource_group.resource_group.id
 
   parameters = {
     service-endpoints = "private"
@@ -90,7 +90,7 @@ module roks_cluster {
   # Account Variables
   prefix            = var.prefix
   region            = var.region
-  resource_group_id = ibm_resource_group.resource_group.id
+  resource_group_id = data.ibm_resource_group.resource_group.id
   # VPC Variables
   vpc_id            = module.multizone_vpc.vpc_id
   subnets           = module.multizone_vpc.subnet_zone_list

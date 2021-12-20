@@ -20,7 +20,7 @@ variable TF_VERSION {
 variable prefix {
     description = "A unique identifier need to provision resources. Must begin with a letter"
     type        = string
-    default     = "gcat-multizone"
+    default     = "jv-eu-dev"
 
     validation  {
       error_message = "Unique ID must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -239,15 +239,8 @@ variable acl_rules {
   
   default     = [
     {
-      name        = "allow-all-inbound"
-      action      = "deny"
-      direction   = "inbound"
-      destination = "0.0.0.0/0"
-      source      = "0.0.0.0/0"
-    },
-    {
       name        = "allow-all-outbound"
-      action      = "deny"
+      action      = "allow"
       direction   = "outbound"
       destination = "0.0.0.0/0"
       source      = "0.0.0.0/0"
@@ -340,21 +333,14 @@ variable security_group_rules {
 
   default = [
     {
-      name      = "allow-inbound-ping"
+      name      = "allow-all-inbound"
       direction = "inbound"
       remote    = "0.0.0.0/0"
-      icmp      = {
-        type = 8
-      }
     },
     {
-      name      = "allow-inbound-ssh"
-      direction = "inbound"
+      name      = "allow-all-outbound"
+      direction = "outbound"
       remote    = "0.0.0.0/0"
-      tcp       = {
-        port_min = 22
-        port_max = 22
-      }
     },
   ]
 
@@ -435,7 +421,7 @@ variable entitlement {
 variable kube_version {
     description = "Specify the Kubernetes version, including the major.minor version. To see available versions, run `ibmcloud ks versions`."
     type        = string
-    default     = "4.7.23_openshift"
+    default     = "4.8.21_openshift"
 
     validation {
         error_message = "To create a ROKS cluster, the kube version must include `openshift`."
@@ -482,16 +468,6 @@ variable worker_pools {
     }))
 
     default     = [
-      {
-        name             = "dev"
-        machine_type     = "cx2.8x16"
-        workers_per_zone = 2
-      },
-      {
-        name             = "test"
-        machine_type     = "mx2.4x32"
-        workers_per_zone = 2
-      }
     ]
 
     validation  {
