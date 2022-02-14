@@ -16,7 +16,7 @@ provider ibm {
 ##############################################################################
 
 data ibm_resource_group resource_group {
-  name = "asset-development"
+  name = var.resource_group
 }
 
 ##############################################################################
