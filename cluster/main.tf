@@ -32,9 +32,9 @@ resource ibm_container_vpc_cluster cluster {
   # }
 
   timeouts {
-    create = "30m"
-    update = "30m"
-    delete = "30m"
+    create = "2h"
+    update = "2h"
+    delete = "2h"
   }
 
 }
