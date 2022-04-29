@@ -19,9 +19,9 @@ variable TF_VERSION {
 }
 
 variable prefix {
-    description = "A unique identifier need to provision resources. Must begin with a letter"
+    description = "A unique identifier needed to provision resources. Must begin with a letter"
     type        = string
-    default     = "jv-eu-dev"
+    default     = "cvsh-claims-prod"
 
     validation  {
       error_message = "Unique ID must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -32,13 +32,13 @@ variable prefix {
 variable region {
   description = "Region where VPC will be created"
   type        = string
-  default     = "us-south"
+  default     = "us-east"
 }
 
 variable resource_group {
     description = "Name of resource group where all infrastructure will be provisioned"
     type        = string
-    default     = "gcat-landing-zone-dev"
+    default     = "cvsh-claims-vpc-prod"
 
     validation  {
       error_message = "Unique ID must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -97,7 +97,7 @@ variable access_groups {
                 {
                     name = "admin_all"
                     resources = {
-                        resource_group = "gcat-landing-zone-dev"
+                        resource_group = "cvsh-claims-vpc-prod"
                     }
                     roles = ["Administrator","Manager"]
                 }
@@ -112,7 +112,7 @@ variable access_groups {
             {
               name      = "dev_view_vpc"
               resources = {
-                resource_group = "gcat-landing-zone-dev"
+                resource_group = "cvsh-claims-vpc-prod"
                 service        = "id"
               }
               roles = ["Viewer"] 
