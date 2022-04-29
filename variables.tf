@@ -8,6 +8,7 @@ variable ibmcloud_api_key {
   description = "The IBM Cloud platform API key needed to deploy IAM enabled resources"
   type        = string
   sensitive   = true
+  default = "UluuOe9IbLJ6K5Sk7MdsykRCbqrgoUa3_ERJCz8wKtYS"
 }
 
 # Comment out if not running in schematics
