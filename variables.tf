@@ -38,7 +38,7 @@ variable region {
 variable resource_group {
     description = "Name of resource group where all infrastructure will be provisioned"
     type        = string
-    default     = "Private Network"
+    default     = "Leighs-OCP-Server-RG"
 
     validation  {
       error_message = "Unique ID must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -97,7 +97,7 @@ variable access_groups {
                 {
                     name = "admin_all"
                     resources = {
-                        resource_group = "Private Network"
+                        resource_group = "Leighs-OCP-Server-RG"
                     }
                     roles = ["Administrator","Manager"]
                 }
@@ -112,7 +112,7 @@ variable access_groups {
             {
               name      = "dev_view_vpc"
               resources = {
-                resource_group = "Private Network"
+                resource_group = "Leighs-OCP-Server-RG"
                 service        = "id"
               }
               roles = ["Viewer"] 
