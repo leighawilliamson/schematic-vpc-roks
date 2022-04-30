@@ -4,7 +4,7 @@
 
 resource ibm_iam_user_invite invite {
     for_each = local.access_groups_object
-    users    = each.value.invite_users
+#    users    = each.value.invite_users
 }
 
 ##############################################################################
