@@ -118,7 +118,7 @@ variable access_groups {
               roles = ["Viewer"] 
             }
           ]
-          invite_users = []
+          invite_users = ["leighw@us.ibm.com"]
         }
     ]
 }
