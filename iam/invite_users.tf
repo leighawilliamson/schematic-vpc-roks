@@ -19,7 +19,7 @@ resource ibm_iam_access_group_members group_members {
     access_group_id = ibm_iam_access_group.groups[each.key].id
     ibm_ids         = each.value.invite_users
     depends_on = [
-        ibm_iam_user_invite.invite
+        ibm_iam_user_invite.add
     ]
 }
 
