@@ -21,7 +21,7 @@ variable TF_VERSION {
 variable prefix {
     description = "A unique identifier needed to provision resources. Must begin with a letter"
     type        = string
-    default     = "cvsh-claims-prod"
+    default     = "cvsh-prod-claims-proxy"
 
     validation  {
       error_message = "Unique ID must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -91,7 +91,7 @@ variable access_groups {
     )
     default     = [
         {
-            name        = "admin"
+            name        = "vpc_admin"
             description = "An example admin group"
             policies    = [
                 {
@@ -103,10 +103,10 @@ variable access_groups {
                 }
             ]
             dynamic_policies = []
-            invite_users = [ "test@test.test" ]
+            invite_users = [ "leighw@us.ibn.com" ]
         },
         {
-          name        = "dev"
+          name        = "vpc_dev"
           description = "A developer access group"
           policies    = [
             {
@@ -118,7 +118,7 @@ variable access_groups {
               roles = ["Viewer"] 
             }
           ]
-          invite_users = ["test@test.test"]
+          invite_users = ["leighw@us.ibn.com"]
         }
     ]
 }
@@ -240,11 +240,18 @@ variable acl_rules {
   
   default     = [
     {
-      name        = "allow-all-outbound"
+      name        = "allow-wa-outbound"
       action      = "allow"
       direction   = "outbound"
-      destination = "0.0.0.0/0"
+      destination = "169.62.8.96/28"
       source      = "0.0.0.0/0"
+    },
+        {
+      name        = "allow-wa-inbound"
+      action      = "allow"
+      direction   = "inbound"
+      destination = "0.0.0.0/0"
+      source      = "169.62.8.96/28"
     }
   ]
 
@@ -333,16 +340,16 @@ variable security_group_rules {
   )
 
   default = [
-    {
-      name      = "allow-all-inbound"
-      direction = "inbound"
-      remote    = "0.0.0.0/0"
-    },
-    {
-      name      = "allow-all-outbound"
-      direction = "outbound"
-      remote    = "0.0.0.0/0"
-    },
+#    {
+#      name      = "allow-all-inbound"
+#      direction = "inbound"
+#      remote    = "0.0.0.0/0"
+#    },
+#    {
+#      name      = "allow-all-outbound"
+#      direction = "outbound"
+#      remote    = "0.0.0.0/0"
+#    },
   ]
 
   validation {
