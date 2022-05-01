@@ -86,7 +86,7 @@ variable access_groups {
                 )
             )
             account_management_policies = optional(list(string))
-            invite_users                = list(string) # Users to invite to the access group
+            invite_users                = optional(list(string)) # Users to invite to the access group
         })
     )
     default     = [
