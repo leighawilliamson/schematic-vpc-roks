@@ -55,7 +55,7 @@ variable resource_group {
 
 variable access_groups {
     description = "A list of access groups to create"
-    type        = optional(list(
+    type        = list(
         object({
             name        = string # Name of the group
             description = string # Description of group
@@ -88,7 +88,7 @@ variable access_groups {
             account_management_policies = optional(list(string))
             invite_users                = optional(list(string)) # Users to invite to the access group
         })
-    ))
+    )
     default     = []
 }
 
