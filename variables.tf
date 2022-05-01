@@ -55,7 +55,7 @@ variable resource_group {
 
 variable access_groups {
     description = "A list of access groups to create"
-    type        = list(
+    type        = optional(list(
         object({
             name        = string # Name of the group
             description = string # Description of group
@@ -88,39 +88,8 @@ variable access_groups {
             account_management_policies = optional(list(string))
             invite_users                = optional(list(string)) # Users to invite to the access group
         })
-    )
-    default     = [
-        {
-            name        = "vpc_admin"
-            description = "An example admin group"
-            policies    = [
-                {
-                    name = "admin_all"
-                    resources = {
-                        resource_group = "schematics-rg"
-                    }
-                    roles = ["Administrator","Manager"]
-                }
-            ]
-            dynamic_policies = []
-            invite_users = ["leighw@us.ibm.com"]
-        },
-        {
-          name        = "vpc_dev"
-          description = "A developer access group"
-          policies    = [
-            {
-              name      = "dev_view_vpc"
-              resources = {
-                resource_group = "schematics-rg"
-                service        = "id"
-              }
-              roles = ["Viewer"] 
-            }
-          ]
-          invite_users = ["leighw@us.ibm.com"]
-        }
-    ]
+    ))
+    default     = []
 }
 
 ##############################################################################
