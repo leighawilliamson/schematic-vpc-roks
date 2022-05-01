@@ -21,7 +21,7 @@ variable TF_VERSION {
 variable prefix {
     description = "A unique identifier needed to provision resources. Must begin with a letter"
     type        = string
-    default     = "cvsh-prod-claims-proxy"
+    default     = "cvsh-prod-proxy"
 
     validation  {
       error_message = "Unique ID must begin and end with a letter and contain only letters, numbers, and - characters."
