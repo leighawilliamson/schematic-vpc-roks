@@ -309,16 +309,16 @@ variable security_group_rules {
   )
 
   default = [
-#    {
-#      name      = "allow-all-inbound"
-#      direction = "inbound"
-#      remote    = "0.0.0.0/0"
-#    },
-#    {
-#      name      = "allow-all-outbound"
-#      direction = "outbound"
-#      remote    = "0.0.0.0/0"
-#    },
+    {
+      name      = "allow-all-inbound"
+      direction = "inbound"
+      remote    = "0.0.0.0/0"
+    },
+    {
+      name      = "allow-all-outbound"
+      direction = "outbound"
+      remote    = "0.0.0.0/0"
+    }
   ]
 
   validation {
